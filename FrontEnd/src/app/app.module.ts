@@ -11,7 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
-// import {ActivateGuard} from '../../src/app/activate.guard';
+import { AdduserComponent } from './adduser/adduser.component';
+import { ListuserComponent } from './listuser/listuser.component';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 
@@ -20,7 +22,9 @@ import { HeaderComponent } from './header/header.component';
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    AdduserComponent,
+    ListuserComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,7 @@ import { HeaderComponent } from './header/header.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ConfirmDialogModule,
     ToastrModule.forRoot(),
     AppRoutingModule
   ],

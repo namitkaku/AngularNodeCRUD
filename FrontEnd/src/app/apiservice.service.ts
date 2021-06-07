@@ -14,4 +14,14 @@ export class ApiserviceService {
   {
     return this.http.post(this.baseURL + '/adminlogin',requestData);
   }
+
+  addUser(requestData:any)
+  {
+    return this.http.post(this.baseURL + '/add-user' ,requestData);
+  }
+
+  listUsers()
+  {
+    return this.http.get(this.baseURL + '/list-users');
+  }
 }
