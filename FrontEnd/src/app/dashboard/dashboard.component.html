@@ -1,14 +1,14 @@
 <app-header></app-header>
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: green;">
     <div class="row">
         <div class="card mt-2">
             <div class="card-body">
-              <h5 class="card-title">Welcome {{sessionValue | titlecase}}</h5>
-              <h4>Dashboard</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h2 class="card-title text-center text-primary">Welcome {{sessionValue | titlecase}}</h2>
+              <h1 class="text-success">Dashboard</h1>
               <a class="btn btn-primary" routerLink="/add-user">+ Add User</a>&nbsp;
               <a class="btn btn-primary" routerLink="/list-users"> List User</a>
             </div>
           </div>
     </div>
 </div>
+<app-footer></app-footer>

@@ -13,7 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { ListuserComponent } from './listuser/listuser.component';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { EdituserComponent } from './edituser/edituser.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -24,7 +25,9 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     DashboardComponent,
     HeaderComponent,
     AdduserComponent,
-    ListuserComponent
+    ListuserComponent,
+    EdituserComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,6 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ConfirmDialogModule,
     ToastrModule.forRoot(),
     AppRoutingModule
   ],

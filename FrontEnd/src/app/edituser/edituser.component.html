@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-7 mt-2">
+            <div class="card mt-7">
+                <div class="card-body">
+                    <form [formGroup]="editUserForm" (ngSubmit)="onSubmit();">
+                        <h3>Edit User</h3>
+                        <div class="mb-3">
+                            <label class="form-label">Enter Name:</label>
+                            <input type="hidden" class="form-control" formControlName="_id">
+                            <input type="text" formControlName="name" name="name" class="form-control">
+                            <div *ngIf="f.name.touched && f.name.invalid" class="text-danger">
+                                <div *ngIf="f.name.errors.required">Name is required.</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email address</label>
+                            <input type="email" formControlName="email" name="email" class="form-control" readonly>
+                            <div *ngIf="f.email.touched && f.email.invalid" class="text-danger">
+                                <div *ngIf="f.email.errors.required">Email is required.</div>
+                                <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone</label>
+                            <input type="number" formControlName="phone" name="phone" class="form-control">
+                            <div *ngIf="f.phone.touched && f.phone.invalid" class="text-danger">
+                                <div *ngIf="f.phone.errors.required">Phone no  is required.</div>
+                                <div *ngIf="f.phone.errors.maxLength">Only 10 digits are allowed</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea rows="3" formControlName="address" cols="25" class="form-control"></textarea>
+                            <div *ngIf="f.address.touched && f.address.invalid" class="text-danger">
+                                <div *ngIf="f.address.errors.required">Address is required.</div>
+                            </div>
+                        </div>
+                        <button type="submit" [disabled]="!editUserForm.valid" class="btn btn-primary">Update User</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+       
+    </div>

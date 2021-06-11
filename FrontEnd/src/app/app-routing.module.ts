@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {ActivateGuard} from '../app/activate.guard';
 import { AdduserComponent } from './adduser/adduser.component';
 import { ListuserComponent } from './listuser/listuser.component';
+import { EdituserComponent } from './edituser/edituser.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
   {
     path:'list-users',
     component:ListuserComponent,
+    canActivate:[ActivateGuard]
+  },
+  {
+    path:'edit-user/:id',
+    component:EdituserComponent,
     canActivate:[ActivateGuard]
   }
 ];

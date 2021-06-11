@@ -1,5 +1,4 @@
 <app-header></app-header>
-<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 <div class="container">
     
     <div class="row mt-2">
@@ -12,19 +11,24 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Address</th>
+                    <th>Status</th>
                     <th>Action</th>
                     <th>Send Mail</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let value of data; let i = index">
-                    <td>{{i + 1}}</td>
+                  <td>{{i + 1}}</td>
                   <td>{{value.name}}</td>
                   <td>{{value.email}}</td>
                   <td>{{value.phone}}</td>
                   <td>{{value.address}}</td>
-                  <td><button type="button" class="btn btn-primary btn-sm">Edit</button>&nbsp;
-                    <button type="button" (click)="confirm()" class="btn btn-danger btn-sm">Delete</button>
+                  <td *ngIf="value.status == 1; else elsestatement"><button type="button" class="btn btn-success btn-sm" (click)="deactivateUser(value._id);">Active</button></td>
+                  <ng-template #elsestatement>
+                    <td><button type="button" class="btn btn-danger btn-sm" (click)="activateUser(value._id);">Inactive</button></td> 
+                  </ng-template>
+                  <td><a class="btn btn-primary btn-sm" routerLink="/edit-user/{{value._id}}">Edit</a>&nbsp;
+                    <a type="button" class="btn btn-danger btn-sm" (click)="deleteUser(value._id);">Delete</a>
                  </td>
                  <td><button type="button" class="btn btn-success btn-sm">Send Email</button></td>
                 </tr>

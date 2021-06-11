@@ -4,7 +4,8 @@ var userSchema = mongoose.Schema({
     name:String,
     email:String,
     phone:Number,
-    address:String
+    address:String,
+    status:Number
 });
 
 mongoose.model('User',userSchema);

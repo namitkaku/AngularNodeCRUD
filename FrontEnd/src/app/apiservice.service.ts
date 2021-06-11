@@ -24,4 +24,29 @@ export class ApiserviceService {
   {
     return this.http.get(this.baseURL + '/list-users');
   }
+
+  getUserInfo(userid:String)
+  {
+    return this.http.get(this.baseURL + '/edit-user/' + userid);
+  }
+
+  updateUser(requestData:any)
+  {
+    return this.http.post(this.baseURL + '/update-user', requestData);
+  }
+
+  deleteUser(id:String)
+  {
+    return this.http.get(this.baseURL + '/delete-user/' + id);
+  }
+  
+  deactivateUser(id:String)
+  {
+    return this.http.get(this.baseURL + '/deactivate-user/' + id);
+  }
+
+  activateUser(id:String)
+  {
+    return this.http.get(this.baseURL + '/activate-user/' + id);
+  }
 }

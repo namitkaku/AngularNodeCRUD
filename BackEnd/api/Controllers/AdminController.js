@@ -7,7 +7,12 @@ var User = mongoose.model('User');
 module.exports = {
     adminLogin:adminLogin,
     addUser:addUser,
-    listUsers:listUsers
+    listUsers:listUsers,
+    editUser:editUser,
+    updateUser:updateUser,
+    deleteUser:deleteUser,
+    deactivateUser:deactivateUser,
+    activateUser:activateUser
 }
 
 function adminLogin(req,res)
@@ -38,7 +43,8 @@ function addUser(req,res)
       name:req.body.name,
       email:req.body.email,
       phone:req.body.phone,
-      address:req.body.address
+      address:req.body.address,
+      status:1
   };
 
   User.countDocuments({email:req.body.email}).then(count => {
@@ -89,4 +95,119 @@ function listUsers(req,res)
             })
         }
     })
+}
+
+function editUser(req,res)
+{
+    User.find({_id:req.params.id}).then(data => {
+        if(data)
+        {
+            return res.json({
+                'status': 200,
+                'message' : `Data fetched Successfully`,
+                'data': data
+            })
+        }
+        else{
+            return res.json({
+                'status': 300,
+                'message' : `Data not data found`,
+            })
+        }
+    })
+}
+
+function updateUser(req,res)
+{
+   User.updateOne(
+       {_id:req.body._id},
+       {$set:{name:req.body.name,phone:req.body.phone,address:req.body.address}},).then(update => {
+           if(update)
+           {
+            return res.json({
+                'status' : 200,
+                'message' : 'Record Updated Successfully!'
+            })
+           }
+           else
+           {
+            return res.json({
+                'status' : 300,
+                'message' : 'Fail to update Record!'
+            })
+           }
+       }) 
+  
+}
+
+function deleteUser(req,res)
+{
+    User.deleteOne({_id:req.params.id}).then(ifdelete =>{
+        if(ifdelete)
+        { 
+            return res.json({
+                'status' : 200,
+                'message' : 'Record Deleted Successfully!'
+            })
+        }
+        else
+        {
+            return res.json({
+                'status' : 300,
+                'message' : 'Fail to delete record!'
+            })
+        }
+    })
+}
+
+function deactivateUser(req,res)
+{
+  User.find({_id:req.params.id}).then(iffind=>{
+      if(iffind)
+      {
+          User.updateOne(
+              {_id:req.params.id},
+              {$set : {status:0}}).then(update=>{
+                  if(update)
+                  {
+                    return res.json({
+                        'status' : 200,
+                        'message' : 'Record Deactivated Successfully!'
+                    })
+                  }
+                  else{
+                    return res.json({
+                        'status' : 300,
+                        'message' : 'Fail to deactivate Record!'
+                    })
+                  }
+              })
+      }
+  })
+}
+
+function activateUser(req,res)
+{
+  User.find({_id:req.params.id}).then(iffind=>{
+      if(iffind)
+      {
+          User.updateOne(
+              {_id:req.params.id},
+              {$set : {status:1}}).then(update=>{
+                  if(update)
+                  {
+                    return res.json({
+                        'status' : 200,
+                        'message' : 'Record Activated Successfully!'
+                    })
+                  }
+                  else{
+                    return res.json({
+                        'status' : 300,
+                        'message' : 'Fail to activate Record!'
+                    })
+                  }
+              })
+      }
+  })
 }
